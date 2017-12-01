@@ -21,8 +21,8 @@ Function to convert a given text file to graph(tuple of tuples)
 """
 def converttextToMAtrix(textfile):
     with open(textfile, 'r') as f:
-        mylist = [tuple(map(int, i.split(' '))) for i in f]
-    outputTuple = tuple([(a, b) for a, b, c in mylist])
+        mylist = [tuple(map(str, i.split(' '))) for i in f]
+    outputTuple = tuple([(a, b) for a, b, c in mylist if c!='0'])
     return(outputTuple)
 
 """
