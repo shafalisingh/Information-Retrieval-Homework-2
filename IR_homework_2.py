@@ -22,7 +22,7 @@ Function to convert a given text file to graph(tuple of tuples)
 def converttextToMAtrix(textfile):
     with open(textfile, 'r') as f:
         mylist = [tuple(map(str, i.split(' '))) for i in f]
-    outputTuple = tuple([(a, b) for a, b, c in mylist if c!='0'])
+    outputTuple = tuple([(a, b) for a, b, c in mylist if (c!='0' and c!='0\n')])
     return(outputTuple)
 
 """
@@ -88,7 +88,8 @@ def pagerank_computation(G, d=0.85, epsilon=0.001):
         threshold = sum(abs(new_ranks[node] - ranks[node]) for node in new_ranks.keys())
         ranks, new_ranks = new_ranks, ranks
         no_of_iterations += 1
-    converged_rank = np.array([ranks[i] for i in ranks])
+
+    converged_rank = np.array([ranks[i] for i in sorted(ranks)])
     converged_rank = converged_rank.reshape((-1, 1))
     return original_rank,original_matrix,no_of_iterations,converged_rank
 
